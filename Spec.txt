@@ -1,0 +1,41 @@
+Hallo,
+heute möchte ich mit dir ein neues Prokjekt starten, das folgendes können soll:
+Ich möchte eine Website, auf der ich Daten zu defnierten Datenelementen eintragen kann. Die Daten sollen folgendes enthalten:
+1. Eindeutige ID,  von mir vorgegeben
+1*. Name Motiv des Steines 
+2. Zeitpunkt YYYY-MM-DD H:mm
+3. Ort (GPS Koordinaten) oder Adresse zum Umrechnen
+4. Ort Text (optional auszufüllen)
+5. Kommentar (optional)
+6. eMail Adresse für benachrichtigung (optional)
+7. ein Foto hochladen (optional) Das Foto darf 3 MB nicht überschreiten
+Diese Daten dürfen auf der Web Seite pro ID immer wieder neu eingegeben werden
+Es soll dann bei AUswahl der ID eine Zoombare Karte mit den bereits eingetragenen Positionen der ID angezeigt werden, sortiert nach Zeitpunkt und aktivierbar / deaktivierbar mit verbundenn Punkten.
+
+Diese Daten sollen in einer SQL Datenbank liegen, von der sie durch die Website abgefragt werden können.
+
+Das Ganze soll später auf einem Server im Internet laufen.
+
+Es soll nohc einen Passwort geschützten Admin Zugang geben, um neue IDs eerstmalig eintragen zu können und auch um Fehlbedienungen , also falsche Einträge über die Webseite (oder eine 2.) auch löschen zu können.
+
+Das ganze soll alle aktuellen Sicherheitsanforderungen an Web Seiten und Datenschutz sowie die DSGVO berücksichtigen.
+
+Die Web-Seite soll eine Einstiegsseite mit Titel und 3-4 Fotos haben, einen modernen aktuellen Eindruck hinterlassen und auch auf mobiltelefonen gut dargestellt werden, sodass sie dort auch les und bedienbar ist.
+
+Eine Seite zum Eintragen eines neuen Datensatzes für eine Bestehende ID
+1 Seite für das verfolgen eines oder bis zu 5 Einträgen auf einer Karte, mit unterschuiedlichen Farben
+1 Seite um Neue IDs voreinzutragen, Freigabe neuer IDs erfolgt über den Admin mit einer Admin Seite
+Neue IDs müssen alle Dateninhalte 1*. bis 7. enthalten, 4. ist optionalZudem noch ein Datenfeld, mit Namen des Eigentümers des Elementes.
+
+Das ganze Projekt soll gegen DoS und DDoS Angriffe geschützt Seiten
+Der Admin Zugang soll durch eine sichere Passwort Prüfung und Speicherung nach modernsten Verfahren erfolgen.
+
+Alle zu installierenden SOftware Pakete sollen in einer Installationsliste (shell skript) stehen, damit die Installation einfach wird.
+
+Zunächst möchte ich die Serverseite auf Linux Mint (lokal) nutzen, später dann auch bei einem Hoster.
+
+SO, das ist viel, plane das bitte mal durch und erstelle mir Vorschläge für Lösungsmöglichkeiten mit Pro und Con und gib mir eine Empfehlung.
+
+Ein Ziel soll sein, dass das ganze Projekt leicht zu Pflegen und zu verwalten ist und natürlich aktuellen Sicherheisstandards voll entspricht.
+
+Dann lege mal los.

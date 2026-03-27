@@ -1,0 +1,23 @@
+# Git Configuration für ElementTracker2026
+
+[core]
+  # Preserve line endings
+  safecrlf = true
+  editor = nano
+
+[user]
+  # Change these to your name/email!
+  name = "ElementTracker Developer"
+  email = "dev@elementtracker.local"
+
+[pull]
+  # Use rebase instead of merge
+  rebase = true
+
+[push]
+  # Only push current branch
+  default = current
+
+[branch]
+  # Auto-setup tracking for new branches
+  autosetuprebase = always
