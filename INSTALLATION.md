@@ -455,6 +455,8 @@ DATABASE_URL=postgresql://elementtracker:db_password@localhost:5432/elementtrack
 
 # JWT Secret (mind. 32 Zeichen, random)
 JWT_SECRET=your_random_secret_key_here_min_32_chars
+REFRESH_TOKEN_SECRET=your_random_refresh_token_secret_here_min_32_chars
+REFRESH_TOKEN_EXPIRES_IN=7d
 
 # Passwort für Photos-Ordner (optional)
 PHOTO_STORAGE_PATH=/var/www/elementtracker/uploads/photos

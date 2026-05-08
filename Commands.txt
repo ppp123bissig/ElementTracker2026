@@ -1,0 +1,8 @@
+lsof -ti tcp:3001 || true
+
+kill 49458 2>/dev/null || true && rm -rf .next && npm run dev -- --port 3001
+
+pwd && ls package.json && rm -rf .next && npm run dev -- --port 3001
+
+bash -lc 'sudo -u postgres psql -d elementtracker -c "SELECT id, element_id, approved FROM pending_entries ORDER BY created_at DESC LIMIT 10;"'
+[sudo] Passwort für besitzer:                

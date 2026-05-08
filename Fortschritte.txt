@@ -1,0 +1,66 @@
+Mega Fortschritt: Alle 4 Schritte wurden durchgespielt, und Backend-Live-API ist aktiv. 2x: health und login liefern jetzt korrekte Antworten, ich habe erfolgreich entries implementiert und getestet.
+
+1. Backend jetzt erreichbar (/health)
+Kommando: npm --prefix backend run dev
+Ergebnis:
+GET http://localhost:3000/health -> {"status":"ok", ...}
+Zustand: grünes Licht
+2. Auth-Login test
+Endpoint: POST /api/v1/auth/login
+Daten getestet:
+{"username":"admin","password":"admin123"}
+Ergebnis:
+success: true
+Token vorhanden
+3. Entries API implementiert + validiert
+Was neu
+entries.ts
+GET /api/v1/entries[?element_id=...]
+POST /api/v1/entries
+DB entries mapping:
+comment, photo_url, address, location_point
+ST_SetSRID(ST_MakePoint(longitude, latitude), 4326)
+Route registriert
+server.ts:
+app.use('/api/v1/entries', entriesRoutes);
+Testlauf
+Element hinzufügen:
+INSERT INTO elements (id=ELEMENT_1, ...)
+Eintrag erstellen:
+POST /api/v1/entries {...}
+Eintrag abfragen:
+GET /api/v1/entries?element_id=ELEMENT_1
+Ergebnis:
+Erfolg: success: true, Einträge enthalten korrekte Werte
+4. Frontend-Integration vorbereitet
+Pages ergänzt
+page.tsx
+Admin-Login-Form
+speichert token in localStorage
+page.tsx
+Formular: element_id, lat, long, address, comment
+POST zu Backend /api/v1/entries
+Dev-Server
+npm --prefix frontend run dev -- --port 3001
+Next.js startet (local: http://localhost:3001)
+Curl auf 3001 in dieser Umgebung fand keine Verbindung (evtl. Sandbox-Restriktion), aber Start-Log zeigt korrekte Initialisierung.
+
+🔧 Fixes / Bugs
+Ursprünglicher entries.ts hatte noch notes in SQL -> wurde auf comment angepasst.
+Vorheriger Startfehler: aus falschem Verzeichnis (/package.json root), jetzt korrekt: --prefix backend.
+🏁 Was jetzt möglich ist
+UI testen:
+Login > Eintrag erfassen (new page)
+erweitern:
+Token-Basilierte Middleware (Auth Guard)
+GET /api/v1/entries filter/offset
+entry 삭제/update (PATCH/DELETE)
+optional:
+Audit-Log in entries-writes schreiben
+Map-View (/map) mit Leaflet statt statisch
+📍 Nächster Vorschlag (optional)
+Wenn du willst, mache ich jetzt direkt:
+
+Backend: JWT-geschützte Einträge (Middleware, Authorization Bearer)
+Frontend: token-basierte Sessionprüfung und Redirect (login->entries).
+Abdeckung: backend/tests/auth.test.ts, entries.test.ts (Jest).

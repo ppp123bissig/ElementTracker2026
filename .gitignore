@@ -28,6 +28,20 @@ out/
 coverage/
 .nyc_output/
 
+# Application-specific
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
+/tmp/
+*.log
+*.sql
+*elementtracker_backup*.tar.gz
+/elementtracker_backup_*/
+
+# Database
+db/
+*.sqlite
+*.sqlite3
+
 # OS
 Thumbs.db
 .DS_Store
