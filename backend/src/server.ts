@@ -223,13 +223,13 @@ app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
 async function startServer() {
   try {
     await ensureDatabaseSchema();
-    const server = app.listen(PORT, () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
       console.log(`
 ╔════════════════════════════════════════╗
 ║   ElementTracker2026 Backend Server    ║
 ╚════════════════════════════════════════╝
 
-🚀 Server running on http://localhost:${PORT}
+🚀 Server running on http://0.0.0.0:${PORT} (accessible at http://10.0.2.15:${PORT})
 📊 Environment: ${NODE_ENV}
 🔐 CORS Origin: ${process.env.CORS_ORIGIN || 'http://localhost:3001'}
 

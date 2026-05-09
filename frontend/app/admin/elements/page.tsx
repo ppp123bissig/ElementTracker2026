@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import SiteShell from '../../../components/SiteShell';
+import { API_BASE_URL } from '../../../lib/api';
 
 interface Element {
   id: string;
@@ -78,7 +79,7 @@ export default function AdminElementsPage() {
     }
 
     try {
-      const res = await fetch('http://localhost:3000/api/v1/auth/refresh', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/auth/refresh`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refreshToken }),
@@ -133,10 +134,10 @@ export default function AdminElementsPage() {
     
     setLoading(true);
     try {
-      const elementsRes = await fetchWithToken('http://localhost:3000/api/v1/elements');
+      const elementsRes = await fetchWithToken(`${API_BASE_URL}/api/v1/elements`);
       const elements = elementsRes.elements || [];
 
-      const entriesRes = await fetchWithToken('http://localhost:3000/api/v1/entries');
+      const entriesRes = await fetchWithToken(`${API_BASE_URL}/api/v1/entries`);
       const allEntries = entriesRes.entries || [];
 
       const elementsList = elements.map((element: Element) => ({
@@ -163,7 +164,7 @@ export default function AdminElementsPage() {
     if (!confirm('Eintrag wirklich löschen?')) return;
 
     try {
-      const res = await fetchWithToken('http://localhost:3000/api/v1/admin/entries/delete', {
+      const res = await fetchWithToken(`${API_BASE_URL}/api/v1/admin/entries/delete`, {
         method: 'DELETE',
         body: JSON.stringify({ id: entryId }),
       });
@@ -183,7 +184,7 @@ export default function AdminElementsPage() {
     if (!confirm(`Element "${elementId}" wirklich löschen? (Softdelete)`)) return;
 
     try {
-      const res = await fetchWithToken('http://localhost:3000/api/v1/admin/elements/delete', {
+      const res = await fetchWithToken(`${API_BASE_URL}/api/v1/admin/elements/delete`, {
         method: 'DELETE',
         body: JSON.stringify({ id: elementId }),
       });
@@ -221,7 +222,7 @@ export default function AdminElementsPage() {
   const saveEditedEntry = async () => {
     if (!editingEntry) return;
     try {
-      await fetchWithToken(`http://localhost:3000/api/v1/admin/entries/${editingEntry.id}`, {
+      await fetchWithToken(`${API_BASE_URL}/api/v1/admin/entries/${editingEntry.id}`, {
         method: 'PATCH',
         body: JSON.stringify({
           address: editValues.address || null,
@@ -347,7 +348,7 @@ export default function AdminElementsPage() {
                     <td className="px-4 py-4 text-slate-600 text-xs">
                       {entry.photo_url ? (
                         <a
-                          href={entry.photo_url.startsWith('http') ? entry.photo_url : `http://localhost:3000${entry.photo_url}`}
+                          href={entry.photo_url.startsWith('http') ? entry.photo_url : `${API_BASE_URL}${entry.photo_url}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-600 hover:text-blue-700"

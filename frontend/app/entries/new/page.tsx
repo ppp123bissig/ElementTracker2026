@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import SiteShell from '../../../components/SiteShell';
+import { API_BASE_URL } from '../../../lib/api';
 
 // Dynamisches Import für Leaflet-Karte (SSR-sicher)
 const PositionMap = dynamic(() => import('../../../components/PositionMap'), {
@@ -45,7 +46,7 @@ export default function EntryForm() {
   const loadElements = async (forceSetFirstElement = false) => {
     setLoadingElements(true);
     try {
-      const res = await fetch('http://localhost:3000/api/v1/elements');
+      const res = await fetch(`${API_BASE_URL}/api/v1/elements`);
       const json = await res.json();
       if (json.success) {
         setElements(json.elements);
@@ -95,7 +96,7 @@ export default function EntryForm() {
         reader.onload = async (event) => {
           try {
             const base64String = event.target?.result as string;
-            const res = await fetch('http://localhost:3000/api/v1/upload', {
+            const res = await fetch(`${API_BASE_URL}/api/v1/upload`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +108,7 @@ export default function EntryForm() {
             if (json.success && json.url) {
               const absoluteUrl = json.url.startsWith('http')
                 ? json.url
-                : `http://localhost:3000${json.url}`;
+                : `${API_BASE_URL}${json.url}`;
               resolve(absoluteUrl);
             } else {
               console.error('Upload failed:', json.error);
@@ -156,7 +157,7 @@ export default function EntryForm() {
     };
 
     try {
-      const res = await fetch('http://localhost:3000/api/v1/pending-entries', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/pending-entries`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
