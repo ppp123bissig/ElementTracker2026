@@ -70,6 +70,15 @@ cd ~/09_Dev/ElementTracker2026
 bash restore-backup.sh /pfad/zum/backup.tar.gz
 ```
 
+## Schnellstart: Nur Daten/DB wiederherstellen
+
+```bash
+cd ~/09_Dev/ElementTracker2026
+bash restore-data-only.sh /pfad/zum/backup.tar.gz
+```
+
+Dieser Befehl stellt nur die Datenbank, Uploads und Umgebungsdateien wieder her und überschreibt keinen Quellcode.
+
 ---
 
 ## Git: Lokalen Stand ins Repository legen

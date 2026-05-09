@@ -103,6 +103,22 @@ Das Skript stellt wieder her:
 - Quellcode aus `src/`
 - optional Uploads aus `backend/public/uploads`
 
+### 3.1. Nur Datenbank und Konfiguration wiederherstellen
+
+Wenn du den aktuellen Git-Quellcode behalten möchtest, aber nur die Datenbank, Uploads und Umgebungsdateien zurückspielen willst:
+
+```bash
+cd ~/09_Dev/ElementTracker2026
+bash restore-data-only.sh /pfad/zum/backup.tar.gz
+```
+
+Dieses Skript überschreibt nicht:
+- `backend/src/`
+- `frontend/app/`
+- `frontend/components/`
+- `frontend/styles/`
+- `package.json` / `package-lock.json`
+
 ---
 
 ## 4. Kaputter lokaler Stand: Was ist sinnvoll?
