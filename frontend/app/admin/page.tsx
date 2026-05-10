@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import SiteShell from '../../components/SiteShell';
-import { API_BASE_URL } from '../../lib/api';
+import { getAPIBaseURL } from '../../lib/api';
 
 interface PendingEntry {
   id: string;
@@ -56,7 +56,7 @@ export default function AdminPage() {
     }
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/v1/auth/refresh`, {
+      const res = await fetch(`${getAPIBaseURL()}/api/v1/auth/refresh`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refreshToken }),
@@ -131,7 +131,7 @@ export default function AdminPage() {
     setError('');
 
     try {
-      const json = await fetchWithToken(`${API_BASE_URL}/api/v1/admin/pending-entries`, {}, accessToken);
+      const json = await fetchWithToken(`${getAPIBaseURL()}/api/v1/admin/pending-entries`, {}, accessToken);
       setPendingEntries(json.pending_entries || []);
     } catch (err: any) {
       setError(err.message || 'Fehler beim Laden der Admin-Daten.');
@@ -160,7 +160,7 @@ export default function AdminPage() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
+      const res = await fetch(`${getAPIBaseURL()}/api/v1/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -198,7 +198,7 @@ export default function AdminPage() {
     setLoading(true);
 
     try {
-      const json = await fetchWithToken(`${API_BASE_URL}/api/v1/admin/pending-entries/${entryId}/${action}`, {
+      const json = await fetchWithToken(`${getAPIBaseURL()}/api/v1/admin/pending-entries/${entryId}/${action}`, {
         method: 'PATCH',
         body: JSON.stringify(action === 'reject' ? { reason: 'Kein ausreichender Nachweis' } : {}),
       });
@@ -328,7 +328,7 @@ export default function AdminPage() {
                       {entry.photo_url && entry.photo_url.trim() !== '' && (
                         <div className="mt-4">
                           <a
-                            href={entry.photo_url.startsWith('http') ? entry.photo_url : `${API_BASE_URL}${entry.photo_url}`}
+                            href={entry.photo_url.startsWith('http') ? entry.photo_url : `${getAPIBaseURL()}${entry.photo_url}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-sm text-blue-600 hover:text-blue-700"

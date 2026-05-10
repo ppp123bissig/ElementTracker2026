@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { API_BASE_URL } from '../lib/api';
+import { getAPIBaseURL } from '../lib/api';
 
 const MapViewer = dynamic(() => import('./MapViewer'), {
   ssr: false,
@@ -35,8 +35,8 @@ export default function EntriesList() {
 
   useEffect(() => {
     const url = filter
-      ? `${API_BASE_URL}/api/v1/entries?element_id=${encodeURIComponent(filter)}`
-      : `${API_BASE_URL}/api/v1/entries`;
+      ? `${getAPIBaseURL()}/api/v1/entries?element_id=${encodeURIComponent(filter)}`
+      : `${getAPIBaseURL()}/api/v1/entries`;
 
     setLoading(true);
     setError('');
@@ -196,7 +196,7 @@ export default function EntriesList() {
                   <td className="px-4 py-4 text-xs">
                     {entry.photo_url && entry.photo_url.trim() !== '' ? (
                       <a
-                        href={entry.photo_url.startsWith('http') ? entry.photo_url : `${API_BASE_URL}${entry.photo_url}`}
+                        href={entry.photo_url.startsWith('http') ? entry.photo_url : `${getAPIBaseURL()}${entry.photo_url}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-600 hover:text-blue-700 font-medium"

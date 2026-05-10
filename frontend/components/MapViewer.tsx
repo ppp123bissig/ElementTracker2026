@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { API_BASE_URL } from '../lib/api';
+import { getAPIBaseURL } from '../lib/api';
 
 interface Entry {
   id: string;
@@ -109,8 +109,8 @@ export default function MapViewer({ initialFilter = '' }: { initialFilter?: stri
 
   useEffect(() => {
     const url = activeFilter
-      ? `${API_BASE_URL}/api/v1/entries?element_id=${encodeURIComponent(activeFilter)}`
-      : `${API_BASE_URL}/api/v1/entries`;
+      ? `${getAPIBaseURL()}/api/v1/entries?element_id=${encodeURIComponent(activeFilter)}`
+      : `${getAPIBaseURL()}/api/v1/entries`;
 
     setLoading(true);
     setError('');
